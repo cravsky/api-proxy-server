@@ -17,7 +17,7 @@ app.use(limiter);
 app.set('trust proxy', 1); // trust first proxy
 
 // Routes
-app.use('/api', require('./routes/index'));
+app.use('/moviemaniac', require('./routes/index'));
 
 
 // Enable cors
