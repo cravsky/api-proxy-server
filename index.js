@@ -6,11 +6,13 @@ require('dotenv').config();
 const PORT = process.env.PORT || 5000;
 
 const app = express();
+// Enable cors
+app.use(cors());
 
 // Rate limiting
 const limiter = rateLimit({
     windowMs: 10 * 60 * 1000, // 10 minutes
-    max: 5 // limit each IP to 100 requests per windowMs
+    max: 50 // limit each IP to 100 requests per windowMs
 });
 
 app.use(limiter);
@@ -20,8 +22,6 @@ app.set('trust proxy', 1); // trust first proxy
 app.use('/moviemaniac', require('./routes/index'));
 
 
-// Enable cors
-app.use(cors());
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
